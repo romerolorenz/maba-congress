@@ -1,8 +1,7 @@
 
-exports.up = function(knex) {
-  return knex.schema.hasTable('authorship').then(function(exists) {
-    if (!exists) {
-      knex.schema
+exports.up = async function(knex) {
+    if (!(await knex.schema.hasTable('authorship'))) {
+      await knex.schema
           .createTable('authorship', function(t) {
             t.string('billNumber');
             t.foreign('billNumber').references('bill.billNumber');
@@ -18,7 +17,6 @@ exports.up = function(knex) {
             console.log(error);
           });
     }
-  });
 };
 
 exports.down = function(knex) {

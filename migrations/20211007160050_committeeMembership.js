@@ -1,8 +1,7 @@
 
-exports.up = function(knex) {
-  return knex.schema.hasTable('committeeMembership').then(function(exists) {
-    if (!exists) {
-      knex.schema
+exports.up = async function(knex) {
+    if (!(await knex.schema.hasTable('committeeMembership'))) {
+      await knex.schema
           .createTable('committeeMembership', function(t) {
             t.integer('representativeId').unsigned();
             t.foreign('representativeId').references('representative.id');
@@ -19,7 +18,6 @@ exports.up = function(knex) {
             console.log(error);
           });
     }
-  });
 };
 
 exports.down = function(knex) {

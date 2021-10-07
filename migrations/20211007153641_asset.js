@@ -1,8 +1,7 @@
 
-exports.up = function(knex) {
-  return knex.schema.hasTable('asset').then(function(exists) {
-    if (!exists) {
-      knex.schema
+exports.up = async function(knex) {
+    if (!(await knex.schema.hasTable('asset'))) {
+      await knex.schema
           .createTable('asset', function(t) {
             t.decimal('totalAssets', 30, 2);
             t.decimal('totalLiabilities', 30, 2);
@@ -18,7 +17,6 @@ exports.up = function(knex) {
             console.log(error);
           });
     }
-  });
 };
 
 exports.down = function(knex) {

@@ -1,8 +1,7 @@
 
-exports.up = function(knex) {
-  return knex.schema.hasTable('committee').then(function(exists) {
-    if (!exists) {
-      knex.schema
+exports.up = async function(knex) {
+    if (!(await knex.schema.hasTable('committee'))) {
+      await knex.schema
           .createTable('committee', function(t) {
             t.string('committee').primary();
             t.text('jurisdiction');
@@ -15,7 +14,6 @@ exports.up = function(knex) {
             console.log(error);
           });
     }
-  });
 };
 
 exports.down = function(knex) {

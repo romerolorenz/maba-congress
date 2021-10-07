@@ -1,8 +1,7 @@
 
-exports.up = function(knex) {
-  return knex.schema.hasTable('bill').then(function(exists) {
-    if (!exists) {
-      knex.schema
+exports.up = async function(knex) {
+    if (!(await knex.schema.hasTable('bill'))) {
+      await knex.schema
           .createTable('bill', function(t) {
             t.string('billNumber').primary();
             t.date('dateFiled');
@@ -21,7 +20,6 @@ exports.up = function(knex) {
             console.log(error);
           });
     }
-  });
 };
 
 exports.down = function(knex) {
