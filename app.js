@@ -5,7 +5,7 @@ require('dotenv').config();
 var SwaggerExpress = require('swagger-express-mw');
 var app = require('express')();
 const helmet = require('helmet');
-const {logger} = require('./api/utilities/logger.js');
+const {logger} = require('./api/utilities/Logger.js');
 
 app.use(helmet());
 
@@ -24,5 +24,5 @@ SwaggerExpress.create(config, function(err, swaggerExpress) {
   var port = process.env.PORT || 10010;
   app.listen(port);
 
-  logger.log('info', 'API Started...')
+  logger.info('API Started...')
 });
