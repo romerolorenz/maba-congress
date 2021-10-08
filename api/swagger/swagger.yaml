@@ -14,30 +14,29 @@ schemes:
 # format of bodies a client can send (Content-Type)
 consumes:
   - application/json
+  - multipart/form-data
 # format of the responses to the client (Accepts)
 produces:
   - application/json
 paths:
-  /hello:
+  /representative:
     # binds a127 app logic to a route
-    x-swagger-router-controller: hello_world
-    get:
-      description: Returns 'Hello' to the caller
+    x-swagger-router-controller: representative
+    post:
+      description: Uploads representative data, receives .xlsx file
       # used as the method name of the controller
-      operationId: hello
+      operationId: uploadRepresentativeFile
       parameters:
-        - name: name
-          in: query
-          description: The name of the person to whom to say hello
-          required: false
-          type: string
+        - name: repData
+          in: formData
+          description: xlsx
+          required: true
+          type: file
       responses:
         "200":
           description: Success
           schema:
-            # a pointer to a definition
-            $ref: "#/definitions/HelloWorldResponse"
-        # responses may fall through to errors
+            $ref: "#/definitions/SuccessResponse"
         default:
           description: Error
           schema:
@@ -46,15 +45,35 @@ paths:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
 definitions:
-  HelloWorldResponse:
-    required:
-      - message
-    properties:
-      message:
-        type: string
   ErrorResponse:
-    required:
-      - message
-    properties:
-      message:
-        type: string
+    type: object
+    # properties:
+    #   timestamp: 
+    #     type: object
+    #     description: Date
+    #     format: date-time
+    #     example:  '2020-04-08T15:08:31.952Z'
+    #   status:
+    #     type: integer
+    #     description: Status code
+    #     example: 400
+    #   message:
+    #     type: string
+    #     description: Error Message
+    #     example:  Bad Request
+  SuccessResponse:
+    type: object
+    # properties:
+    #   timestamp: 
+    #     type: object
+    #     description: Date
+    #     format: date-time
+    #     example:  '2020-04-08T15:08:31.952Z'
+    #   status:
+    #     type: integer
+    #     description: Status code
+    #     example: 200
+    #   message:
+    #     type: string
+    #     description: Success Message
+    #     example:  Processing

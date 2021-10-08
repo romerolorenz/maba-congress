@@ -21,6 +21,14 @@ SwaggerExpress.create(config, function(err, swaggerExpress) {
   // install middleware
   swaggerExpress.register(app);
 
+  app.use((err, req, res, next) => {
+    res.status(err.httpStatus || 500).json({
+      message: err.message,
+      eventCode: err.eventCode,
+      status: err.status,
+    });
+  });
+
   var port = process.env.PORT || 10010;
   app.listen(port);
 
