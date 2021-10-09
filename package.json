@@ -8,12 +8,12 @@
   "license": "",
   "main": "app.js",
   "dependencies": {
-    "csv": "^5.5.3",
     "csv-parser": "^3.0.0",
     "dotenv": "^10.0.0",
     "express": "^4.12.3",
     "helmet": "^4.6.0",
     "knex": "^0.95.11",
+    "lodash": "^4.17.21",
     "mysql": "^2.18.1",
     "swagger-express-mw": "^0.1.0",
     "winston": "^3.3.3"

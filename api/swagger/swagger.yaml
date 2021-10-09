@@ -19,7 +19,7 @@ consumes:
 produces:
   - application/json
 paths:
-  /representative:
+  /upload/Representative:
     # binds a127 app logic to a route
     x-swagger-router-controller: representative
     post:
@@ -32,6 +32,105 @@ paths:
           description: xlsx
           required: true
           type: file
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/SuccessResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /seed/representative:
+    x-swagger-router-controller: representative
+    post:
+      description: Processes representative file
+      # used as the method name of the controller
+      operationId: seedRepresentativeFile
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/SuccessResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /representative:
+    x-swagger-router-controller: representative
+    get:
+      description: Returns representative details
+      operationId: getRepresentative
+      parameters:
+        - name: firstName
+          in: query
+          type: string
+        - name: lastName
+          in: query
+          type: string
+        - name: district
+          in: query
+          type: string
+        - name: region
+          in: query
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/SuccessResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    post:
+      description: inserts representative details
+      operationId: insertRepresentative
+      parameters:
+        - name: repDetails
+          in: body
+          schema:
+            type: object
+            properties:
+              id:
+                type: integer
+              firstName:
+                type: string
+              lastName:
+                type: string
+              region:
+                type: string
+              district:
+                type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/SuccessResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    patch:
+      description: Updates representative details
+      operationId: updateRepresentative
+      parameters:
+        - name: id
+          in: query
+          type: integer
+        - name: updateDetails
+          in: body
+          schema:
+            type: object
+            properties:
+              firstName:
+                type: string
+              lastName:
+                type: string
+              region:
+                type: string
+              district:
+                type: string
       responses:
         "200":
           description: Success
