@@ -7,7 +7,7 @@ exports.up = async function(knex) {
             t.string('lastName');
             t.string('firstName');
             t.string('district');
-            t.string('regionParty');
+            t.string('provinceParty');
           })
           .then((result) => {
             console.log('representative table created');

@@ -34,9 +34,9 @@ function getRepresentative(req, res, next) {
   const firstName = repParams.firstName.value;
   const lastName = repParams.lastName.value;
   const district = repParams.district.value;
-  const regionParty = repParams.regionParty.value;
+  const provinceParty = repParams.provinceParty.value;
 
-  const filter = { firstName, lastName, district, regionParty };
+  const filter = { firstName, lastName, district, provinceParty };
 
   try {
     RepHandlers.getRepresentative(filter)
@@ -54,10 +54,10 @@ function updateRepresentative(req, res, next) {
   const firstName = repParams.firstName;
   const lastName = repParams.lastName;
   const district = repParams.district;
-  const regionParty = repParams.regionParty;
+  const provinceParty = repParams.provinceParty;
   const id = req.swagger.params.id.value;
 
-  const update = { firstName, lastName, district, regionParty };
+  const update = { firstName, lastName, district, provinceParty };
 
   const where = {
     id: id

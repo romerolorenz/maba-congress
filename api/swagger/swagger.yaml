@@ -71,7 +71,7 @@ paths:
         - name: district
           in: query
           type: string
-        - name: regionParty
+        - name: provinceParty
           in: query
           type: string
       responses:
@@ -98,7 +98,7 @@ paths:
                 type: string
               lastName:
                 type: string
-              regionParty:
+              provinceParty:
                 type: string
               district:
                 type: string
@@ -127,7 +127,7 @@ paths:
                 type: string
               lastName:
                 type: string
-              regionParty:
+              provinceParty:
                 type: string
               district:
                 type: string
