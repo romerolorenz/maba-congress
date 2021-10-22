@@ -24,7 +24,6 @@ class CsvUtil {
           .pipe(csv())
           .on('data', (data) => res.push(data))
           .on('end', () => {
-            console.log('hi');
             resolve(res);
           })
       } catch (error) {

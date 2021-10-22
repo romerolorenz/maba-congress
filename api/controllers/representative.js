@@ -34,9 +34,9 @@ function getRepresentative(req, res, next) {
   const firstName = repParams.firstName.value;
   const lastName = repParams.lastName.value;
   const district = repParams.district.value;
-  const region = repParams.region.value;
+  const regionParty = repParams.regionParty.value;
 
-  const filter = { firstName, lastName, district, region };
+  const filter = { firstName, lastName, district, regionParty };
 
   try {
     RepHandlers.getRepresentative(filter)
@@ -54,10 +54,10 @@ function updateRepresentative(req, res, next) {
   const firstName = repParams.firstName;
   const lastName = repParams.lastName;
   const district = repParams.district;
-  const region = repParams.region;
+  const regionParty = repParams.regionParty;
   const id = req.swagger.params.id.value;
 
-  const update = { firstName, lastName, district, region };
+  const update = { firstName, lastName, district, regionParty };
 
   const where = {
     id: id
@@ -69,7 +69,7 @@ function updateRepresentative(req, res, next) {
         res.json(new AppSuccess(`Updated ${result} record/s`))
       })
   } catch (error) {
-    console.log(error)
+    logger.error(error.error)
     next(new AppError(error))
   }
 }
