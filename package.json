@@ -13,6 +13,7 @@
     "express": "^4.12.3",
     "helmet": "^4.6.0",
     "knex": "^0.95.11",
+    "knex-csv-seeder": "^0.4.1",
     "lodash": "^4.17.21",
     "mysql": "^2.18.1",
     "swagger-express-mw": "^0.1.0",

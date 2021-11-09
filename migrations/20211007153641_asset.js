@@ -7,7 +7,9 @@ exports.up = async function(knex) {
             t.decimal('totalLiabilities', 30, 2);
             t.date('date');
             t.integer('representativeId').unsigned();
-            t.foreign('representativeId').references('representative.id');
+            t.foreign('representativeId').references('representative.id')
+              .onUpdate('CASCADE')
+              .onDelete('CASCADE');
             t.primary(['representativeId', 'date'])
           })
           .then((result) => {

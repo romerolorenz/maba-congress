@@ -4,11 +4,14 @@ exports.up = async function(knex) {
       await knex.schema
           .createTable('committeeMembership', function(t) {
             t.integer('representativeId').unsigned();
-            t.foreign('representativeId').references('representative.id');
+            t.foreign('representativeId').references('representative.id')
+              .onUpdate('CASCADE')
+              .onDelete('CASCADE');
             t.string('committee');
-            t.foreign('committee').references('committee.committee');
+            t.foreign('committee').references('committee.committee')
+              .onUpdate('CASCADE')
+              .onDelete('CASCADE');
             t.string('role');
-            t.date('date');
             t.primary(['representativeId', 'committee']);
           })
           .then((result) => {

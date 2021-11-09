@@ -9,9 +9,11 @@ exports.up = async function(knex) {
             t.date('dateUrgent');
             t.varchar('motherBillStatus');
             t.varchar('primaryReferralCommittee');
-            t.foreign('primaryReferralCommittee').references('committee.committee');
-            t.varchar('shortTitle');
-            t.varchar('status');
+            t.foreign('primaryReferralCommittee').references('committee.committee')
+              .onUpdate('CASCADE')
+              .onDelete('CASCADE');
+            t.text('title');
+            t.text('status');
           })
           .then((result) => {
             console.log('bill table created');

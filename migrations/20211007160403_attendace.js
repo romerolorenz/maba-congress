@@ -4,7 +4,9 @@ exports.up = async function(knex) {
       await knex.schema
           .createTable('attendance', function(t) {
             t.integer('representativeId').unsigned();
-            t.foreign('representativeId').references('representative.id');
+            t.foreign('representativeId').references('representative.id')
+              .onUpdate('CASCADE')
+              .onDelete('CASCADE');
             t.integer('absenceWithoutNotice');
             t.integer('absenceWithNotice');
             t.integer('deemedPresent');
