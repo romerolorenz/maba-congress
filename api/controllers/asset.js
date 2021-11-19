@@ -4,7 +4,6 @@ csv = new CsvUtil()
 
 function getAsset(req, res, next) {
   const params = (req.swagger.params);
-  console.log(params)
   const representativeId = params.representativeId.value;
 
   const filter = { representativeId };
@@ -23,7 +22,7 @@ function getAsset(req, res, next) {
 function insertAsset(req, res, next) {
   const assetDetails = (req.swagger.params.assetDetails.value);
   assetDetails.date = new Date(assetDetails.date)
-  console.log(assetDetails)
+  
   AssetHandlers.insertAsset([assetDetails])
     .then(result => {
       res.json(new AppSuccess(result))

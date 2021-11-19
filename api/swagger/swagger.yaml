@@ -184,6 +184,118 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+  /bill:
+    x-swagger-router-controller: bill
+    get:
+      description: Returns representative details
+      operationId: getBill
+      parameters:
+        - name: billNumber
+          in: query
+          type: string
+        - name: primaryReferralCommittee
+          in: query
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/SuccessResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    post:
+      description: inserts representative details
+      operationId: insertBill
+      parameters:
+        - name: billDetails
+          in: body
+          schema:
+            type: object
+            properties:
+              billNumber:
+                type: string
+              dateFiled:
+                type: string
+              dateRead:
+                type: string
+              dateUrgent:
+                type: string
+              motherBillStatus:
+                type: string
+              primaryReferralCommittee:
+                type: string
+              title:
+                type: string
+              status:
+                type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/SuccessResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    patch:
+      description: Updates representative details
+      operationId: updateBill
+      parameters:
+        - name: billNumber
+          in: query
+          type: string
+        - name: updateDetails
+          in: body
+          schema:
+            type: object
+            properties:
+              dateRead:
+                type: string
+              motherBillStatus:
+                type: string
+              status:
+                type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/SuccessResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /bill/representative:
+    x-swagger-router-controller: bill
+    get:
+      description: Returns representative details
+      operationId: getBillJoin
+      parameters:
+        - name: billNumber
+          in: query
+          type: string
+        - name: primaryReferralCommittee
+          in: query
+          type: string
+        - name: representativeId
+          in: query
+          type: integer
+        - name: firstName
+          in: query
+          type: string
+        - name: lastName
+          in: query
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/SuccessResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
