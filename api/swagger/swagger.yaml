@@ -140,6 +140,50 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+  /asset:
+    x-swagger-router-controller: asset
+    get:
+      description: Returns representative details
+      operationId: getAsset
+      parameters:
+        - name: representativeId
+          in: query
+          type: integer
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/SuccessResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    post:
+      description: inserts representative details
+      operationId: insertAsset
+      parameters:
+        - name: assetDetails
+          in: body
+          schema:
+            type: object
+            properties:
+              totaAssets:
+                type: number
+              totalLiabilities:
+                type: number
+              representativeId:
+                type: integer
+              date:
+                type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/SuccessResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
